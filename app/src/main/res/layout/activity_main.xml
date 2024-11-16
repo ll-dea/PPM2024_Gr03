@@ -5,19 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF9C9C"
-    android:backgroundTint="#BC6F6F"
+    android:background="#753F3F"
+    android:backgroundTint="#753F3F"
     tools:context=".MainActivity">
-
-    <!-- First ConstraintLayout with a new unique ID -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/innerLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#7C6A6A"
-    android:visibility="visible"
-    tools:context=".MainActivity"
-    tools:visibility="visible">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,17 +22,16 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
+            app:srcCompat="@drawable/icon" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="My App"
+            android:text="Espresso Yourself"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="35dp" />
+            android:textSize="35sp" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>

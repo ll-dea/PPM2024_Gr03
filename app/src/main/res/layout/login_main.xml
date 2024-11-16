@@ -5,10 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main"
             android:layout_width="match_parent"
@@ -18,29 +14,27 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="450dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
-                tools:layout_editor_absoluteX="1dp">
+                android:gravity="center_horizontal"
+                android:layout_marginTop="200dp">
 
                 <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:srcCompat="@drawable/ic_launcher_foreground" />
+                    app:srcCompat="@drawable/icon"
+                    android:layout_width="100dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="150dp"
+                    android:layout_marginBottom="10dp" />
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:text="Welcome!"
-                    android:textSize="30dp" />
+                    android:textSize="30sp" />
 
                 <EditText
                     android:id="@+id/editTextTextEmailAddress"
@@ -85,6 +79,6 @@
                     android:contentDescription="Sign up if you don't have an account"
                     android:text="Sign Up" />
             </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>

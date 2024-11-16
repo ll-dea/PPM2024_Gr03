@@ -8,30 +8,33 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#AFABAB"
+        android:background="#AD9B9B"
+        android:backgroundTint="#AD9B9B"
         tools:context=".SignUp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="450dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
+                android:id="@+id/imageView2"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="150dp"
+                android:layout_marginBottom="10dp"
+                app:srcCompat="@drawable/icon" />
 
             <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="SignUP"
-                android:textSize="25sp" />
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Sign Up"
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/editTextText"
@@ -92,7 +95,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Sign Up" />
+                    android:text="Sign Up"
+                    android:textColorHint="#9B6868" />
 
                 <!-- Back to Login Button -->
                 <Button
@@ -101,9 +105,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:contentDescription="Login if you have an account"
-                    android:text="Login" />
+                    android:text="Login"
+                    app:iconTint="#7A2626" />
             </LinearLayout>
 
         </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
