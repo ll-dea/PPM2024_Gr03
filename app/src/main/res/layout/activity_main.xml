@@ -9,39 +9,40 @@
     android:backgroundTint="#BC6F6F"
     tools:context=".MainActivity">
 
+    <!-- First ConstraintLayout with a new unique ID -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
+        android:id="@+id/innerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#7C6A6A"
+    android:visibility="visible"
+    tools:context=".MainActivity"
+    tools:visibility="visible">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#7C6A6A"
-        android:visibility="visible"
-        tools:context=".MainActivity"
-        tools:visibility="visible">
+        android:layout_height="400dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        tools:layout_editor_absoluteX="1dp">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5"
-            tools:layout_editor_absoluteX="1dp">
+            android:layout_height="200dp"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My App"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="35dp" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="My App"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="35dp" />
-
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
