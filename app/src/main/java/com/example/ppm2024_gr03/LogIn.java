@@ -48,7 +48,10 @@ public class LogIn extends AppCompatActivity {
         // Sign Up button click listener
         signUpButton.setOnClickListener(view -> {
             Intent intent = new Intent(this, SignUp.class);
+            overridePendingTransition(R.xml.slide_left, R.xml.slide_right);
+
             startActivity(intent);
+
         });
     }
 

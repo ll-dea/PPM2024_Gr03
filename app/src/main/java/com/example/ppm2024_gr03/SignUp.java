@@ -43,7 +43,10 @@ public class SignUp extends AppCompatActivity {
 
         backToLoginButton.setOnClickListener(v -> {
             Intent intent = new Intent(SignUp.this, LogIn.class); // Replace with your login activity class
+            overridePendingTransition(R.xml.slide_right, R.xml.slide_left);
+
             startActivity(intent);
+
         });
     }
 
