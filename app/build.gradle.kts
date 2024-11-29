@@ -45,4 +45,5 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation("de.svenkubiak:jBCrypt:0.4.1")
+    implementation ("mysql:mysql-connector-java:8.0.30")
 }
