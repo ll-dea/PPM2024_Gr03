@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -17,7 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="200dp"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -37,49 +39,54 @@
                 android:textSize="30sp" />
 
             <EditText
-                android:id="@+id/editTextText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/signupName"
+                android:layout_width="360dp"
+                android:layout_height="36dp"
                 android:layout_margin="10dp"
                 android:background="#FFFFFF"
                 android:hint="Enter your name"
-                android:inputType="text" />
+                android:inputType="text"
+                android:minHeight="48dp" />
 
             <EditText
-                android:id="@+id/editTextText2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/signupSurname"
+                android:layout_width="360dp"
+                android:layout_height="36dp"
                 android:layout_margin="10dp"
                 android:background="#FFFFFF"
                 android:hint="Enter your last name"
-                android:inputType="text" />
+                android:inputType="text"
+                android:minHeight="48dp" />
 
             <EditText
-                android:id="@+id/editTextTextEmailAddress3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/signupEmail"
+                android:layout_width="360dp"
+                android:layout_height="36dp"
                 android:layout_margin="10dp"
                 android:background="#FFFFFF"
                 android:hint="Enter your email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp" />
 
             <EditText
-                android:id="@+id/editTextPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/signupPhone"
+                android:layout_width="360dp"
+                android:layout_height="36dp"
                 android:layout_margin="10dp"
                 android:background="#FFFFFF"
                 android:hint="Enter your phone number"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:minHeight="48dp" />
 
             <EditText
-                android:id="@+id/editTextTextPassword2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/signupPassword"
+                android:layout_width="360dp"
+                android:layout_height="36dp"
                 android:layout_margin="10dp"
                 android:background="#FFFFFF"
                 android:hint="Enter your password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:minHeight="48dp" />
 
             <!-- LinearLayout for buttons -->
             <LinearLayout
@@ -91,7 +98,7 @@
 
                 <!-- Sign Up Button -->
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/signup"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -100,7 +107,7 @@
 
                 <!-- Back to Login Button -->
                 <Button
-                    android:id="@+id/buttonBackToLogin"
+                    android:id="@+id/loginButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

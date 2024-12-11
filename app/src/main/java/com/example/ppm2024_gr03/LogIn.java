@@ -1,80 +1,84 @@
 package com.example.ppm2024_gr03;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
-import org.mindrot.jbcrypt.BCrypt;
+
 
 public class LogIn extends AppCompatActivity {
 
     private EditText emailEditText;
     private EditText passwordEditText;
-    private Button loginButton, signUpButton;
-    private DB db;
+    private Button loginButton;
+    private  Button signUpButton;
+
+    DB DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.login_main);
 
-        emailEditText = findViewById(R.id.editTextTextEmailAddress);
-        passwordEditText = findViewById(R.id.editTextTextPassword);
-        loginButton = findViewById(R.id.button);
-        signUpButton = findViewById(R.id.signUpButton);
+        emailEditText=findViewById(R.id.loginEmail);
+        passwordEditText=findViewById(R.id.loginPassword);
+        loginButton=findViewById(R.id.loginButton);
+        signUpButton=findViewById(R.id.signup);
 
-        db = new DB(this);
 
-        loginButton.setOnClickListener(view -> validateFields());
+        DB=new DB(this);
 
-        signUpButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, SignUp.class);
-            startActivity(intent);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
         });
+
+        loginButton.setOnClickListener(view->validateFields());
+
+        signUpButton.setOnClickListener(view->{
+            Intent intent=new Intent(LogIn.this, SignUp.class);
+            startActivity(intent);
+            overridePendingTransition(R.xml.slide_right, R.xml.slide_left);
+        });
+
+
     }
+    private void validateFields(){
+        String email=emailEditText.getText().toString();
+        String password=passwordEditText.getText().toString();
 
-    private void validateFields() {
-        String email = emailEditText.getText().toString().trim();
-        String password = passwordEditText.getText().toString().trim();
+        if (TextUtils.isEmpty(email)){
+            Toast.makeText(this,"Please enter your email!",Toast.LENGTH_SHORT).show();
+        } else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(this,"Please enter a valid email address!",Toast.LENGTH_SHORT).show();
+        }else if (TextUtils.isEmpty(password)) {
+            Toast.makeText(this,"Please enter your password!",Toast.LENGTH_SHORT).show();
+        }else {
 
-        if (TextUtils.isEmpty(email)) {
-            Toast.makeText(this, "Please enter your email!", Toast.LENGTH_SHORT).show();
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(this, "Please enter a valid email address!", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Please enter your password!", Toast.LENGTH_SHORT).show();
-        } else {
-            // Retrieve the stored password hash from the database
-            String storedPassword = db.getPasswordByEmail(email);
+            Boolean validateUser=DB.validateUser(email,password);
+            if(validateUser){
 
-            // Debugging logs
-            Log.d("Debug", "Entered Email: " + email);
-            Log.d("Debug", "Stored Hash: " + (storedPassword != null ? storedPassword : "null"));
-            Log.d("Debug", "Entered Password: " + password);
+                Toast.makeText(this,"Success!",Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(LogIn.this, HomePage.class);
+                startActivity(intent);
 
-            if (storedPassword != null) {
-                boolean passwordMatch = BCrypt.checkpw(password, storedPassword);
-                Log.d("Debug", "Password Match: " + passwordMatch);
+            }
+            else{
+                Toast.makeText(this,"Wrong Credentials!",Toast.LENGTH_SHORT).show();
 
-                if (passwordMatch) {
-                    Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(this, HomePage.class);
-                    intent.putExtra("userEmail", email);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(this, "Invalid email or password!", Toast.LENGTH_SHORT).show();
-                    Log.d("LogIn", "Password mismatch for email: " + email);
-                }
-            } else {
-                Toast.makeText(this, "Invalid email or password!", Toast.LENGTH_SHORT).show();
-                Log.d("LogIn", "User not found for email: " + email);
             }
         }
     }

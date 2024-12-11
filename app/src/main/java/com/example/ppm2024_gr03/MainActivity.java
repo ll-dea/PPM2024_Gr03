@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
             overridePendingTransition(R.xml.slide_bottom, R.xml.fade_out);
             finish();
         }, 4000);
+
     }
 
 

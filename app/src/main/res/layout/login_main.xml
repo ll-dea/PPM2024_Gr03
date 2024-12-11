@@ -15,17 +15,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:gravity="center_horizontal"
-                android:layout_marginTop="200dp">
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints">
 
                 <ImageView
                     android:id="@+id/imageView2"
-                    app:srcCompat="@drawable/icon"
                     android:layout_width="100dp"
                     android:layout_height="80dp"
                     android:layout_marginTop="150dp"
-                    android:layout_marginBottom="10dp" />
+                    android:layout_marginBottom="10dp"
+                    app:srcCompat="@drawable/icon" />
 
                 <TextView
                     android:id="@+id/textView2"
@@ -37,9 +37,9 @@
                     android:textSize="30sp" />
 
                 <EditText
-                    android:id="@+id/editTextTextEmailAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/loginEmail"
+                    android:layout_width="360dp"
+                    android:layout_height="36dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
@@ -49,29 +49,32 @@
                     android:inputType="textEmailAddress" />
 
                 <EditText
-                    android:id="@+id/editTextTextPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/loginPassword"
+                    android:layout_width="360dp"
+                    android:layout_height="36dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
+                    android:autofillHints=""
                     android:background="#F4F4F4"
                     android:ems="10"
                     android:hint="Enter your password"
                     android:inputType="textPassword" />
 
                 <Button
-                    android:id="@+id/button"
-                    android:layout_width="match_parent"
+                    android:id="@+id/loginButton"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:singleLine="true"
                     android:text="Login" />
 
                 <Button
-                    android:id="@+id/signUpButton"
-                    android:layout_width="match_parent"
+                    android:id="@+id/signup"
+                    android:layout_width="143dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
