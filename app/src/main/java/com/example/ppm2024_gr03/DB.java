@@ -12,10 +12,10 @@ import androidx.annotation.Nullable;
 import org.mindrot.jbcrypt.BCrypt;
 public class DB extends SQLiteOpenHelper {
 
-    public static final String DBNAME="login.db";
+    public static final String DBNAME="user.db";
 
     public DB(@Nullable Context context) {
-        super(context,"login.db",null,1);
+        super(context,"user.db",null,1);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class DB extends SQLiteOpenHelper {
     }
     public Boolean validateUser(String email,String password){
         SQLiteDatabase db=this.getReadableDatabase();
-        Cursor cursor=db.rawQuery("Select password from users where email=?",new String[]{email});
+        Cursor cursor=db.rawQuery("Select password from adminUser where email=?",new String[]{email});
 
         if(cursor.moveToFirst()){
             String storedHashedPassword=cursor.getString(0);
