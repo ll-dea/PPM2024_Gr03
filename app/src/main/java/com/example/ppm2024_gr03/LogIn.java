@@ -56,30 +56,41 @@ public class LogIn extends AppCompatActivity {
 
 
     }
-    private void validateFields(){
-        String email=emailEditText.getText().toString();
-        String password=passwordEditText.getText().toString();
+    private void validateFields() {
+        String email = emailEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
 
-        if (TextUtils.isEmpty(email)){
-            Toast.makeText(this,"Please enter your email!",Toast.LENGTH_SHORT).show();
-        } else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(this,"Please enter a valid email address!",Toast.LENGTH_SHORT).show();
-        }else if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this,"Please enter your password!",Toast.LENGTH_SHORT).show();
-        }else {
-
-            Boolean validateUser=DB.validateUser(email,password);
-            if(validateUser){
-
-                Toast.makeText(this,"Success!",Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(LogIn.this, HomePage.class);
-                startActivity(intent);
-
-            }
-            else{
-                Toast.makeText(this,"Wrong Credentials!",Toast.LENGTH_SHORT).show();
-
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(this, "Please enter your email!", Toast.LENGTH_SHORT).show();
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(this, "Please enter a valid email address!", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "Please enter your password!", Toast.LENGTH_SHORT).show();
+        } else {
+            // Verifiko përdoruesin
+            Boolean isValidUser = DB.validateUser(email, password);
+            if (isValidUser) {
+                boolean isAdmin = DB.checkAdminEmail(email); // Kontrollo nëse është admin
+                if (isAdmin) {
+                    // Hap faqen e admin-it
+                    String userName = DB.getUserName(email);
+                    Toast.makeText(this, "Welcome Admin!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LogIn.this, AdminPage.class);
+                    intent.putExtra("adminEmail", email);
+                    intent.putExtra("adminName", userName);
+                    startActivity(intent);
+                } else {
+                    // Hap faqen e përdoruesit të thjeshtë
+                    String userName = DB.getUserName(email); // Merr emrin e përdoruesit
+                    Toast.makeText(this, "Welcome " + userName + "!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LogIn.this, HomePage.class);
+                    intent.putExtra("userEmail", email);
+                    intent.putExtra("userName", userName);
+                    startActivity(intent);
+                }
+            } else {
+                Toast.makeText(this, "Wrong Credentials!", Toast.LENGTH_SHORT).show();
             }
         }
-    }
+}
 }

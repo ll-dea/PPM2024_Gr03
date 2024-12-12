@@ -12,18 +12,30 @@ import androidx.annotation.Nullable;
 import org.mindrot.jbcrypt.BCrypt;
 public class DB extends SQLiteOpenHelper {
 
-    public static final String DBNAME="user.db";
+    public static final String DBNAME="users.db";
 
     public DB(@Nullable Context context) {
-        super(context,"user.db",null,1);
+        super(context,"users.db",null,1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Create Table users(email TEXT PRIMARY KEY, password TEXT)");
-        db.execSQL("CREATE TABLE adminUser (email TEXT PRIMARY KEY, password TEXT, name TEXT,surname TEXT, phone TEXT)");
+        db.execSQL("CREATE TABLE users(email TEXT PRIMARY KEY, password TEXT, name TEXT, surname TEXT, phone TEXT)");
+        db.execSQL("CREATE TABLE adminUser(email TEXT PRIMARY KEY, password TEXT, name TEXT, surname TEXT, phone TEXT)");
         db.execSQL("CREATE TABLE tasks(id INTEGER PRIMARY KEY AUTOINCREMENT, task_name TEXT)");
+
+        // Shto admin-in statik
+        String adminEmail = "admin@example.com";
+        String adminPassword = BCrypt.hashpw("Admin@123", BCrypt.gensalt());
+        String adminName = "Admin";
+        String adminSurname = "User";
+        String adminPhone = "1234567890";
+
+        db.execSQL("INSERT INTO adminUser (email, password, name, surname, phone) VALUES (?, ?, ?, ?, ?)",
+                new Object[]{adminEmail, adminPassword, adminName, adminSurname, adminPhone});
     }
+
+    private static final int DATABASE_VERSION = 1;
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -32,121 +44,101 @@ public class DB extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS tasks");
         onCreate(db);
     }
-
-    public boolean insertTask(String task_name){
-        SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues contentValues=new ContentValues();
-        contentValues.put("task_name",task_name);
-
-        long result=db.insert("tasks",null,contentValues);
-        return result!= -1;
-
-    }
-    public boolean deleteTaskByName(String taskName) {
-        SQLiteDatabase database = this.getWritableDatabase();
-
-        // Fetch the ID of one matching task
-        Cursor cursor = database.query("tasks", new String[]{"id"}, "task_name = ?", new String[]{taskName}, null, null, null, "1");
-
-        if (cursor != null && cursor.moveToFirst()) {
-            @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex("id"));
-            cursor.close();
-
-            // Delete the task using its ID
-            int rowsDeleted = database.delete("tasks", "id = ?", new String[]{String.valueOf(id)});
-            return rowsDeleted > 0;
-        }
-
-        if (cursor != null) {
-            cursor.close();
-        }
-
-        return false; // No matching task found
-    }
-
-    public boolean deleteTask() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        try {
-            // Find the last task's ID (or unique identifier)
-            Cursor cursor = db.rawQuery("SELECT id FROM tasks ORDER BY id DESC LIMIT 1", null);
-            if (cursor.moveToFirst()) {
-                int id = cursor.getInt(0); // Get the ID of the last task
-                // Delete the task by its ID
-                db.delete("tasks", "id = ?", new String[]{String.valueOf(id)});
-                cursor.close();
-                return true;
-            } else {
-                cursor.close();
-                return false; // No task to delete
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        } finally {
-            db.close();
-        }
-    }
-
-    public Cursor getAllTasks(){
-        SQLiteDatabase db=this.getReadableDatabase();
-        return db.rawQuery("Select * from tasks",null);
-    }
-    public  Boolean insertData(String email, String password){
-
-        SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues contentValues=new ContentValues();
-
-        String hashedPassword=BCrypt.hashpw(password,BCrypt.gensalt());
-
-        contentValues.put("email", email);
-        contentValues.put("password",hashedPassword);
-
-        long result=db.insert("users",null,contentValues);
-        if(result==-1) return false;
-        else return true;
-    }
-    public Boolean checkEmail(String email){
-        SQLiteDatabase db=this.getWritableDatabase();
-        Cursor cursor=db.rawQuery("Select * from users where email=?",new String[]{email});
-        if (cursor.getCount()>0){
-            return true;
-        }else return false;
-
-    }
-    public Boolean validateUser(String email,String password){
-        SQLiteDatabase db=this.getReadableDatabase();
-        Cursor cursor=db.rawQuery("Select password from adminUser where email=?",new String[]{email});
-
-        if(cursor.moveToFirst()){
-            String storedHashedPassword=cursor.getString(0);
-            cursor.close();
-
-            return BCrypt.checkpw(password,storedHashedPassword);
-        }
+    // Kontrollo nëse është admin
+    public Boolean checkAdminEmail(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM adminUser WHERE email=?", new String[]{email});
+        boolean exists = cursor.getCount() > 0;
         cursor.close();
+        return exists;
+    }
+
+    // Merr emrin e përdoruesit ose admin-it
+    public String getUserName(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Kontrollo në tabelën 'users'
+        Cursor userCursor = db.rawQuery("SELECT name FROM users WHERE email = ?", new String[]{email});
+        if (userCursor.moveToFirst()) {
+            String name = userCursor.getString(0);
+            userCursor.close();
+            return name;
+        }
+        userCursor.close();
+
+        // Nëse nuk gjendet në 'users', kontrollo në tabelën 'adminUser'
+        Cursor adminCursor = db.rawQuery("SELECT name FROM adminUser WHERE email = ?", new String[]{email});
+        if (adminCursor.moveToFirst()) {
+            String name = adminCursor.getString(0);
+            adminCursor.close();
+            return name;
+        }
+        adminCursor.close();
+
+        // Nëse nuk gjendet as në njërën tabelë
+        return null;
+    }
+
+    public Boolean validateUser(String email, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Check the `users` table
+        Cursor userCursor = db.rawQuery("SELECT password FROM users WHERE email=?", new String[]{email});
+        if (userCursor.moveToFirst()) {
+            String storedHashedPassword = userCursor.getString(0);
+            userCursor.close();
+
+            // Validate hashed password
+            if (BCrypt.checkpw(password, storedHashedPassword)) {
+                return true;
+            }
+        }
+        userCursor.close();
+
+        // Check the `adminUser` table
+        Cursor adminCursor = db.rawQuery("SELECT password FROM adminUser WHERE email=?", new String[]{email});
+        if (adminCursor.moveToFirst()) {
+            String storedHashedPassword = adminCursor.getString(0);
+            adminCursor.close();
+
+            // Validate hashed password
+            if (BCrypt.checkpw(password, storedHashedPassword)) {
+                return true;
+            }
+        }
+        adminCursor.close();
+
+        // If neither table has the email/password combination
         return false;
     }
-    public Boolean insertAdminUser(String email, String password, String name,String surname, String phone) {
+
+
+    // NE TABELEN USERS RUHEN TE DHENAT QE SHKRUN NE SIGNUP , ADMIN CAKTOJM VETEM ME KOD
+    public Boolean insertAdminUser(String email, String password, String name, String surname, String phone) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
+        // Kontrollo që email dhe password të mos jenë bosh
+        if (email == null || password == null || name == null || surname == null || phone == null) {
+            return false;
+        }
+
+        // Gjenero hashed password
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
+        // Vendos vlerat
         contentValues.put("email", email);
         contentValues.put("password", hashedPassword);
         contentValues.put("name", name);
         contentValues.put("surname", surname);
         contentValues.put("phone", phone);
 
-        long result = db.insert("adminUser", null, contentValues);
+        // Fillo futjen
+        long result = db.insert("users", null, contentValues);
+
+        // Kontrollo nëse futja dështoi
         return result != -1;
     }
 
-    // Check if admin user exists by email
-    public Boolean checkAdminEmail(String email) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM adminUser WHERE email=?", new String[]{email});
-        boolean exists = cursor.getCount() > 0;
-        cursor.close();
-        return exists;
-    }
+
 }

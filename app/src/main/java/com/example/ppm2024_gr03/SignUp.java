@@ -47,15 +47,16 @@ public class SignUp extends AppCompatActivity {
                 String name = nameField.getText().toString().trim();
                 String email = emailField.getText().toString().trim();
                 String password = passwordField.getText().toString().trim();
-                String surname = passwordField.getText().toString().trim();
-                String phone = passwordField.getText().toString().trim();
+                String surname = surnameField.getText().toString().trim();
+                String phone = phoneField.getText().toString().trim();
+
                 // Proceed with signup logic
                 if (DB.checkAdminEmail(email)) {
-                    Toast.makeText(this, "Admin user already exists.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "This user already exists.", Toast.LENGTH_SHORT).show();
                 } else if (DB.insertAdminUser(email,password,name,surname,phone)) {
-                    Toast.makeText(this, "Admin signup successful!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Signup successful!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, "Failed to register admin user.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Failed to register.", Toast.LENGTH_SHORT).show();
                 }
                 Log.d("SignUp", "Button clicked");
                 Log.d("SignUp", "Email: " + email);
@@ -79,10 +80,10 @@ public class SignUp extends AppCompatActivity {
     private boolean validateFields() {
         // Retrieve values
         String name = nameField.getText().toString().trim();
-        String surname = surnameField.getText().toString().trim();
         String email = emailField.getText().toString().trim();
-        String phone = phoneField.getText().toString().trim();
         String password = passwordField.getText().toString().trim();
+        String surname = surnameField.getText().toString().trim();
+        String phone = phoneField.getText().toString().trim();
 
         // Validate Name (only alphabets, not empty)
         if (TextUtils.isEmpty(name) || !name.matches("[a-zA-Z]+")) {

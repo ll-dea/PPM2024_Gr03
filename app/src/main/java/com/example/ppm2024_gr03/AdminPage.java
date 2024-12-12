@@ -6,19 +6,17 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class HomePage extends AppCompatActivity {
+public class AdminPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.admin_homepage);
 
-        String userName = getIntent().getStringExtra("userName");
+        String userName = getIntent().getStringExtra("adminName");
 
-        Log.d("HomePage", "User name: " + userName);
+        Log.d("Admin-HomePage", "User name: " + userName);
 
         TextView welcomeText = findViewById(R.id.welcomeTextView);
         welcomeText.setText("Hello, " + userName + "!");
     }
-
-
 }
