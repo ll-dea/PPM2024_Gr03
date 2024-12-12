@@ -46,4 +46,6 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation("de.svenkubiak:jBCrypt:0.4.1")
     implementation ("mysql:mysql-connector-java:8.0.33")
+    implementation ("org.osmdroid:osmdroid-android:6.1.10")
+
 }
