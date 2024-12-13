@@ -32,6 +32,10 @@
         <activity android:name=".SignUp" />
         <activity android:name=".HomePage" />
         <activity android:name=".AdminPage" />
+        <activity android:name=".BuyPage" />
+
+
+
 
     </application>
 </manifest>

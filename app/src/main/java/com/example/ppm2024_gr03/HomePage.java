@@ -72,8 +72,7 @@ public class HomePage extends AppCompatActivity {
         buyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // For example, navigate to a Buy activity
-                Intent intent = new Intent(HomePage.this, HomePage.class);
+                Intent intent = new Intent(HomePage.this, BuyPage.class);
                 startActivity(intent);
             }
         });
