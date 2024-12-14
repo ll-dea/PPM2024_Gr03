@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D59E9E">
+    android:background="#D59E9E"
+    android:backgroundTint="#FFFFFF">
 
     <TextView
         android:id="@+id/welcomeTextView"
@@ -44,28 +45,27 @@
 
         <Button
             android:id="@+id/button1"
+            style="@style/CustomButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="Home"
-            style="@style/CustomButtonStyle" />
+            android:text="Home" />
 
         <Button
             android:id="@+id/button2"
+            style="@style/CustomButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="Buy"
-            style="@style/CustomButtonStyle" />
+            android:text="Menu" />
 
         <Button
             android:id="@+id/button3"
+            style="@style/CustomButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="Contact"
-            style="@style/CustomButtonStyle" />
-
+            android:text="Contact" />
 
 
     </LinearLayout>
@@ -154,6 +154,7 @@
     <!-- Log Out Button -->
     <Button
         android:id="@+id/logoutButton"
+        style="@style/CustomButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -162,7 +163,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.942"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mapView"
-        style="@style/CustomButtonStyle"/>
+        app:layout_constraintTop_toBottomOf="@id/mapView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
