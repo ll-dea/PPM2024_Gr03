@@ -58,7 +58,7 @@ public class BuyPage extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     // For example, navigate to the Contact activity
-                    Intent intent = new Intent(BuyPage.this, HomePage.class);
+                    Intent intent = new Intent(BuyPage.this, ContactPage.class);
                     startActivity(intent);
                 }
             });

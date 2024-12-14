@@ -81,7 +81,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // For example, navigate to the Contact activity
-                Intent intent = new Intent(HomePage.this, HomePage.class);
+                Intent intent = new Intent(HomePage.this, ContactPage.class);
                 startActivity(intent);
             }
         });
