@@ -14,7 +14,7 @@
         android:layout_marginBottom="16dp">
 
         <Button
-            android:id="@+id/btn_page1"
+            android:id="@+id/btn_1"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
@@ -23,7 +23,7 @@
             android:textColor="@android:color/white"/>
 
         <Button
-            android:id="@+id/btn_page2"
+            android:id="@+id/btn_2"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
@@ -33,7 +33,7 @@
             android:textColor="@android:color/white" />
 
         <Button
-            android:id="@+id/btn_page3"
+            android:id="@+id/btn_3"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
