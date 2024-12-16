@@ -35,7 +35,7 @@ public class AdminPage extends AppCompatActivity {
             public void onClick(View v) {
                 // For example, navigate to the home activity
                 // You can start a new activity or update the UI
-                Intent intent = new Intent(AdminPage.this, HomePage.class); // Or the appropriate activity
+                Intent intent = new Intent(AdminPage.this, AdminPage.class); // Or the appropriate activity
                 startActivity(intent);
             }
         });
@@ -43,7 +43,7 @@ public class AdminPage extends AppCompatActivity {
         buyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminPage.this, BuyPage.class);
+                Intent intent = new Intent(AdminPage.this, NewItem.class);
                 startActivity(intent);
             }
         });
