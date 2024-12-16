@@ -17,10 +17,11 @@ import java.util.List;
 
 public class DB extends SQLiteOpenHelper {
 
-    public static final String DBNAME="users.db";
+    public static final String DBNAME = "users.db";
+    private static final int DATABASE_VERSION = 2; // Incremented version
 
     public DB(@Nullable Context context) {
-        super(context,"users.db",null,1);
+        super(context, DBNAME, null, DATABASE_VERSION); // Updated version here
     }
 
     @Override
@@ -29,11 +30,10 @@ public class DB extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE adminUser(email TEXT PRIMARY KEY, password TEXT, name TEXT, surname TEXT, phone TEXT)");
         db.execSQL("CREATE TABLE tasks(id INTEGER PRIMARY KEY AUTOINCREMENT, task_name TEXT)");
 
-        // Tabela per mesazhe
+        // Table for messages
         db.execSQL("CREATE TABLE messages(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT, message TEXT)");
 
-
-        // Shto admin-in statik
+        // Insert default admin user
         String adminEmail = "admin@example.com";
         String adminPassword = BCrypt.hashpw("Admin@123", BCrypt.gensalt());
         String adminName = "Admin";
@@ -44,16 +44,19 @@ public class DB extends SQLiteOpenHelper {
                 new Object[]{adminEmail, adminPassword, adminName, adminSurname, adminPhone});
     }
 
-    private static final int DATABASE_VERSION = 1;
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // Drop existing tables if they exist (and recreate them)
         db.execSQL("DROP TABLE IF EXISTS users");
         db.execSQL("DROP TABLE IF EXISTS adminUser");
         db.execSQL("DROP TABLE IF EXISTS tasks");
+        db.execSQL("DROP TABLE IF EXISTS messages");
+
+        // Recreate tables
         onCreate(db);
     }
-    // Kontrollo nëse është admin
+
+    // Check if email is associated with admin
     public Boolean checkAdminEmail(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM adminUser WHERE email=?", new String[]{email});
@@ -61,6 +64,7 @@ public class DB extends SQLiteOpenHelper {
         cursor.close();
         return exists;
     }
+
     public long insertMessage(String name, String email, String message) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -71,6 +75,7 @@ public class DB extends SQLiteOpenHelper {
 
         return db.insert("messages", null, contentValues);
     }
+
     public List<UserMessage> getAllMessages() {
         List<UserMessage> messageList = new ArrayList<>();
         SQLiteDatabase readableDb = this.getReadableDatabase();
@@ -88,13 +93,11 @@ public class DB extends SQLiteOpenHelper {
         return messageList;
     }
 
-
-
-    // Merr emrin e përdoruesit ose admin-it
+    // Get the user's name (either regular user or admin)
     public String getUserName(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        // Kontrollo në tabelën 'users'
+        // Check the 'users' table
         Cursor userCursor = db.rawQuery("SELECT name FROM users WHERE email = ?", new String[]{email});
         if (userCursor.moveToFirst()) {
             String name = userCursor.getString(0);
@@ -103,7 +106,7 @@ public class DB extends SQLiteOpenHelper {
         }
         userCursor.close();
 
-        // Nëse nuk gjendet në 'users', kontrollo në tabelën 'adminUser'
+        // If not found in 'users', check the 'adminUser' table
         Cursor adminCursor = db.rawQuery("SELECT name FROM adminUser WHERE email = ?", new String[]{email});
         if (adminCursor.moveToFirst()) {
             String name = adminCursor.getString(0);
@@ -112,7 +115,6 @@ public class DB extends SQLiteOpenHelper {
         }
         adminCursor.close();
 
-        // Nëse nuk gjendet as në njërën tabelë
         return null;
     }
 
@@ -125,7 +127,6 @@ public class DB extends SQLiteOpenHelper {
             String storedHashedPassword = userCursor.getString(0);
             userCursor.close();
 
-            // Validate hashed password
             if (BCrypt.checkpw(password, storedHashedPassword)) {
                 return true;
             }
@@ -138,44 +139,36 @@ public class DB extends SQLiteOpenHelper {
             String storedHashedPassword = adminCursor.getString(0);
             adminCursor.close();
 
-            // Validate hashed password
             if (BCrypt.checkpw(password, storedHashedPassword)) {
                 return true;
             }
         }
         adminCursor.close();
 
-        // If neither table has the email/password combination
         return false;
     }
 
-
-    // NE TABELEN USERS RUHEN TE DHENAT QE SHKRUN NE SIGNUP , ADMIN CAKTOJM VETEM ME KOD
+    // Insert admin user
     public Boolean insertAdminUser(String email, String password, String name, String surname, String phone) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        // Kontrollo që email dhe password të mos jenë bosh
+        // Check that no field is null
         if (email == null || password == null || name == null || surname == null || phone == null) {
             return false;
         }
 
-        // Gjenero hashed password
+        // Generate hashed password
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
-        // Vendos vlerat
         contentValues.put("email", email);
         contentValues.put("password", hashedPassword);
         contentValues.put("name", name);
         contentValues.put("surname", surname);
         contentValues.put("phone", phone);
 
-        // Fillo futjen
         long result = db.insert("users", null, contentValues);
 
-        // Kontrollo nëse futja dështoi
         return result != -1;
     }
-
-
 }

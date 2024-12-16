@@ -52,7 +52,7 @@ public class AdminPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // For example, navigate to the Contact activity
-                Intent intent = new Intent(AdminPage.this, ContactPage.class);
+                Intent intent = new Intent(AdminPage.this, Messages_Admin_Page.class);
                 startActivity(intent);
             }
         });
