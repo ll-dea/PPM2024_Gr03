@@ -45,7 +45,10 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation("de.svenkubiak:jBCrypt:0.4.1")
-    implementation ("mysql:mysql-connector-java:8.0.33")
     implementation ("org.osmdroid:osmdroid-android:6.1.10")
+
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1")
 
 }

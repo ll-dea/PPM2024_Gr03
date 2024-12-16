@@ -6,10 +6,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Message;
 
 import androidx.annotation.Nullable;
 
 import org.mindrot.jbcrypt.BCrypt;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class DB extends SQLiteOpenHelper {
 
     public static final String DBNAME="users.db";
@@ -23,6 +28,10 @@ public class DB extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE users(email TEXT PRIMARY KEY, password TEXT, name TEXT, surname TEXT, phone TEXT)");
         db.execSQL("CREATE TABLE adminUser(email TEXT PRIMARY KEY, password TEXT, name TEXT, surname TEXT, phone TEXT)");
         db.execSQL("CREATE TABLE tasks(id INTEGER PRIMARY KEY AUTOINCREMENT, task_name TEXT)");
+
+        // Tabela per mesazhe
+        db.execSQL("CREATE TABLE messages(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT, message TEXT)");
+
 
         // Shto admin-in statik
         String adminEmail = "admin@example.com";
@@ -52,6 +61,34 @@ public class DB extends SQLiteOpenHelper {
         cursor.close();
         return exists;
     }
+    public long insertMessage(String name, String email, String message) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("name", name);
+        contentValues.put("email", email);
+        contentValues.put("message", message);
+
+        return db.insert("messages", null, contentValues);
+    }
+    public List<UserMessage> getAllMessages() {
+        List<UserMessage> messageList = new ArrayList<>();
+        SQLiteDatabase readableDb = this.getReadableDatabase();
+
+        Cursor cursor = readableDb.rawQuery("SELECT name, email, message FROM messages", null);
+        if (cursor.moveToFirst()) {
+            do {
+                String name = cursor.getString(0);
+                String email = cursor.getString(1);
+                String message = cursor.getString(2);
+                messageList.add(new UserMessage(name, email, message));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return messageList;
+    }
+
+
 
     // Merr emrin e përdoruesit ose admin-it
     public String getUserName(String email) {

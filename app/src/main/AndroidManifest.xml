@@ -34,6 +34,7 @@
         <activity android:name=".AdminPage" />
         <activity android:name=".BuyPage" />
         <activity android:name=".ContactPage" />
+        <activity android:name=".Messages_Admin_Page" />
 
 
 
