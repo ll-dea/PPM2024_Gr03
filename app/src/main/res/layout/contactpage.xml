@@ -5,6 +5,58 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:padding="8dp"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/btn_page1"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Home"
+            android:backgroundTint="@color/primary"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:id="@+id/btn_page2"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Menu"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@color/primary"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn_page3"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Contact"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@color/primary"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="73dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Do you want to write a message to us?"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
     <EditText
         android:id="@+id/et_name"
         android:layout_width="match_parent"
@@ -39,5 +91,6 @@
         android:text="Send Message"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/primary"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white" />
+
 </LinearLayout>
