@@ -36,6 +36,8 @@
         <activity android:name=".ContactPage" />
         <activity android:name=".Messages_Admin_Page" />
         <activity android:name=".NewItem" />
+        <activity android:name=".Cart_Activity" />
+
 
 
 

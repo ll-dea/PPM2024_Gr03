@@ -1,4 +1,5 @@
 package com.example.ppm2024_gr03;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,20 +14,18 @@ public class BuyPage extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.buypage);
 
-            // Example: Set an onClickListener for one of the buttons
-            findViewById(R.id.buyCoffeeButton).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(BuyPage.this, "Coffee purchased!", Toast.LENGTH_SHORT).show();
-                }
+            Button buyCoffeeButton = findViewById(R.id.buyCoffeeButton);
+            buyCoffeeButton.setOnClickListener(v -> {
+                CartItem coffeeItem = new CartItem(
+                        "Ice Coffee",
+                        "Freshly iced coffee",
+                        3.00,
+                        R.drawable.img
+                );
+                Cart.getInstance().addItem(coffeeItem);
+                Toast.makeText(this, "Item added to cart", Toast.LENGTH_SHORT).show();
             });
 
-            findViewById(R.id.buyPieButton).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(BuyPage.this, "Pie purchased!", Toast.LENGTH_SHORT).show();
-                }
-            });
 
 
 
@@ -62,5 +61,6 @@ public class BuyPage extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+            
         }
     }
