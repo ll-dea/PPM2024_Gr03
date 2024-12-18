@@ -18,7 +18,7 @@ import java.util.List;
 public class DB extends SQLiteOpenHelper {
 
     public static final String DBNAME = "users.db";
-    private static final int DATABASE_VERSION = 2; // Incremented version
+    private static final int DATABASE_VERSION = 3; // Incremented version
 
     public DB(@Nullable Context context) {
         super(context, DBNAME, null, DATABASE_VERSION); // Updated version here
@@ -229,7 +229,9 @@ public class DB extends SQLiteOpenHelper {
                 "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Vanilla Cupcake', 2.8, 'Cupcake with vanilla flavor', 'Flour, Sugar, Eggs, Vanilla')",
                 "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Chocolate Macarons', 6.0, 'Delicate chocolate macarons', 'Almond Flour, Sugar, Cocoa, Eggs')",
                 "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Hot Chocolate', 2.0, 'Warm and comforting hot chocolate', 'Milk, Cocoa, Sugar')",
-                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Black Tea', 1.8, 'Bold and rich black tea', 'Black Tea Leaves, Water')"
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Black Tea', 1.8, 'Bold and rich black tea', 'Black Tea Leaves, Water')",
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Biscuits',2.50 ,'Buttery and flaky classic biscuits', 'Flour, butter, milk, baking powder, salt');"
+
         };
 
         for (String item : items) {

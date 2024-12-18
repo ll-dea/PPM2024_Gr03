@@ -46,7 +46,7 @@ public class BuyPage extends AppCompatActivity {
             }
             String[] productNames = {
                     "Iced Coffee", "Iced Matcha", "Sweet Iced Coffee", "Chocolate Iced Coffee",
-                    "Fresh Sweet Lemonade", "Hot Tea", "Chocolate Cake", "Muffins",
+                    "Fresh Sweet Lemonade", "Hot Tea", "Chocolate Cake", "Muffins","Biscuits",
                     "Strawberries Cake", "PanCake", "Berry MilkShake", "Cinnamon Rolls",
                     "Kiwi Cupcake", "Vanilla Cupcake", "Chocolate Macarons", "Hot Chocolate", "Black Tea"
             };
