@@ -117,10 +117,10 @@
                                 android:layout_marginBottom="8dp" />
 
                             <Button
-                                android:id="@+id/buyCoffeeButton"
+                                android:id="@+id/IcedCoffeeButton"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Buy Item"
+                                android:text="More"
                                 android:backgroundTint="@color/primary"
                                 android:textColor="@android:color/white" />
                         </LinearLayout>
@@ -183,10 +183,10 @@
                                 android:layout_marginBottom="8dp" />
 
                             <Button
-                                android:id="@+id/buyPieButton"
+                                android:id="@+id/IcedMatchaButton"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Buy Item"
+                                android:text="More"
                                 android:backgroundTint="@color/primary"
                                 android:textColor="@android:color/white" />
                         </LinearLayout>
@@ -194,8 +194,7 @@
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
         </LinearLayout>
-    <!-- Additional Rows (6 more rows) -->
-        <!-- Row 2 -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -254,9 +253,10 @@
                             android:layout_marginBottom="8dp" />
 
                         <Button
+                            android:id="@+id/SweetIcedButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Buy Item"
+                            android:text="More"
                             android:backgroundTint="@color/primary"
                             android:textColor="@android:color/white" />
                     </LinearLayout>
@@ -315,9 +315,10 @@
                             android:layout_marginBottom="8dp" />
 
                         <Button
+                            android:id="@+id/ChocolateIcedCoffeeButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Buy Item"
+                            android:text="More"
                             android:backgroundTint="@color/primary"
                             android:textColor="@android:color/white" />
                     </LinearLayout>
@@ -331,7 +332,6 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-            <!-- First Card -->
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -383,9 +383,10 @@
                             android:layout_marginBottom="8dp" />
 
                         <Button
+                            android:id="@+id/FreshSweetLemonadeButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Buy Item"
+                            android:text="More"
                             android:backgroundTint="@color/primary"
                             android:textColor="@android:color/white" />
                     </LinearLayout>
@@ -444,9 +445,10 @@
                             android:layout_marginBottom="8dp" />
 
                         <Button
+                            android:id="@+id/HotTeaButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Buy Item"
+                            android:text="More"
                             android:backgroundTint="@color/primary"
                             android:textColor="@android:color/white" />
                     </LinearLayout>
@@ -513,9 +515,10 @@
                             android:layout_marginBottom="8dp" />
 
                         <Button
+                            android:id="@+id/ChocolateCakeButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Buy Item"
+                            android:text="More"
                             android:backgroundTint="@color/primary"
                             android:textColor="@android:color/white" />
                     </LinearLayout>
@@ -574,9 +577,11 @@
                             android:layout_marginBottom="8dp" />
 
                         <Button
+                            android:id="@+id/MuffinsButton"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Buy Item"
+                            android:text="More"
                             android:backgroundTint="@color/primary"
                             android:textColor="@android:color/white" />
                     </LinearLayout>
@@ -591,7 +596,7 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-            <!-- First Card -->
+
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -643,16 +648,17 @@
                             android:layout_marginBottom="8dp" />
 
                         <Button
+                            android:id="@+id/BiscuitsButton"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Buy Item"
+                            android:text="More"
                             android:backgroundTint="@color/primary"
                             android:textColor="@android:color/white" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Second Card -->
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -704,9 +710,11 @@
                             android:layout_marginBottom="8dp" />
 
                         <Button
+                            android:id="@+id/StrawberriesCakeButton"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Buy Item"
+                            android:text="More"
                             android:backgroundTint="@color/primary"
                             android:textColor="@android:color/white" />
                     </LinearLayout>
@@ -721,7 +729,7 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-            <!-- First Card -->
+
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -773,9 +781,11 @@
                             android:layout_marginBottom="8dp" />
 
                         <Button
+                            android:id="@+id/PanCakeButton"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Buy Item"
+                            android:text="More"
                             android:backgroundTint="@color/primary"
                             android:textColor="@android:color/white" />
                     </LinearLayout>
@@ -834,9 +844,11 @@
                             android:layout_marginBottom="8dp" />
 
                         <Button
+                            android:id="@+id/BerryMilkShakeButton"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Buy Item"
+                            android:text="More"
                             android:backgroundTint="@color/primary"
                             android:textColor="@android:color/white" />
                     </LinearLayout>
@@ -903,9 +915,11 @@
                             android:layout_marginBottom="8dp" />
 
                         <Button
+                            android:id="@+id/CinnamonRollsButton"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Buy Item"
+                            android:text="More"
                             android:backgroundTint="@color/primary"
                             android:textColor="@android:color/white" />
                     </LinearLayout>
@@ -964,9 +978,10 @@
                             android:layout_marginBottom="8dp" />
 
                         <Button
+                            android:id="@+id/KiwiCupcakeButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Buy Item"
+                            android:text="More"
                             android:backgroundTint="@color/primary"
                             android:textColor="@android:color/white" />
                     </LinearLayout>
@@ -1033,9 +1048,11 @@
                             android:layout_marginBottom="8dp" />
 
                         <Button
+                            android:id="@+id/VanillaCupcakeButton"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Buy Item"
+                            android:text="More"
                             android:backgroundTint="@color/primary"
                             android:textColor="@android:color/white" />
                     </LinearLayout>
@@ -1094,9 +1111,10 @@
                             android:layout_marginBottom="8dp" />
 
                         <Button
+                            android:id="@+id/ChocolateMacaronsButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Buy Item"
+                            android:text="More"
                             android:backgroundTint="@color/primary"
                             android:textColor="@android:color/white" />
                     </LinearLayout>
@@ -1163,9 +1181,10 @@
                             android:layout_marginBottom="8dp" />
 
                         <Button
+                            android:id="@+id/HotChocolateButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Buy Item"
+                            android:text="More"
                             android:backgroundTint="@color/primary"
                             android:textColor="@android:color/white" />
                     </LinearLayout>
@@ -1224,9 +1243,10 @@
                             android:layout_marginBottom="8dp" />
 
                         <Button
+                            android:id="@+id/BlackTeaButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Buy Item"
+                            android:text="More"
                             android:backgroundTint="@color/primary"
                             android:textColor="@android:color/white" />
                     </LinearLayout>

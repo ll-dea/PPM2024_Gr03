@@ -29,6 +29,9 @@ public class DB extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE users(email TEXT PRIMARY KEY, password TEXT, name TEXT, surname TEXT, phone TEXT)");
         db.execSQL("CREATE TABLE adminUser(email TEXT PRIMARY KEY, password TEXT, name TEXT, surname TEXT, phone TEXT)");
         db.execSQL("CREATE TABLE tasks(id INTEGER PRIMARY KEY AUTOINCREMENT, task_name TEXT)");
+        
+        //Tabela per items
+        db.execSQL("CREATE TABLE items (id INTEGER PRIMARY KEY AUTOINCREMENT,emri TEXT NOT NULL,cmimi REAL NOT NULL,pershkrimi TEXT,perbersit TEXT);");
 
         // Table for messages
         db.execSQL("CREATE TABLE messages(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT, message TEXT)");
@@ -42,6 +45,7 @@ public class DB extends SQLiteOpenHelper {
 
         db.execSQL("INSERT INTO adminUser (email, password, name, surname, phone) VALUES (?, ?, ?, ?, ?)",
                 new Object[]{adminEmail, adminPassword, adminName, adminSurname, adminPhone});
+        insertDefaultItems(db);
     }
 
     @Override
@@ -51,6 +55,7 @@ public class DB extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS adminUser");
         db.execSQL("DROP TABLE IF EXISTS tasks");
         db.execSQL("DROP TABLE IF EXISTS messages");
+        db.execSQL("DROP TABLE IF EXISTS items");
 
         // Recreate tables
         onCreate(db);
@@ -170,5 +175,65 @@ public class DB extends SQLiteOpenHelper {
         long result = db.insert("users", null, contentValues);
 
         return result != -1;
+    }
+    class Item {
+        private final int id;
+        private final String emri;
+        private final double cmimi;
+        private final String pershkrimi;
+        private final String perbersit;
+
+        public Item(int id, String emri, double cmimi, String pershkrimi, String perbersit) {
+            this.id = id;
+            this.emri = emri;
+            this.cmimi = cmimi;
+            this.pershkrimi = pershkrimi;
+            this.perbersit = perbersit;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public String getEmri() {
+            return emri;
+        }
+
+        public double getCmimi() {
+            return cmimi;
+        }
+
+        public String getPershkrimi() {
+            return pershkrimi;
+        }
+
+        public String getPerbersit() {
+            return perbersit;
+        }
+    }
+    private void insertDefaultItems(SQLiteDatabase db) {
+        String[] items = {
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Iced Coffee', 3.5, 'Cold coffee with ice', 'Coffee, Ice, Sugar')",
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Iced Matcha', 4.0, 'Matcha latte with ice', 'Matcha, Milk, Ice')",
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Sweet Iced Coffee', 3.7, 'Sweetened cold coffee', 'Coffee, Ice, Sugar Syrup')",
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Chocolate Iced Coffee', 4.2, 'Cold coffee with chocolate flavor', 'Coffee, Ice, Chocolate Syrup')",
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Fresh Sweet Lemonade', 2.5, 'Refreshing lemonade', 'Lemon, Sugar, Water')",
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Hot Tea', 1.5, 'Traditional hot tea', 'Tea Leaves, Water')",
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Chocolate Cake', 5.0, 'Rich chocolate cake', 'Flour, Cocoa, Sugar, Eggs')",
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Muffins', 3.0, 'Soft and fluffy muffins', 'Flour, Sugar, Eggs, Butter')",
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Strawberries Cake', 5.5, 'Delicious cake with strawberries', 'Flour, Sugar, Eggs, Strawberries')",
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('PanCake', 3.8, 'Fluffy pancakes', 'Flour, Milk, Eggs, Sugar, Butter')",
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Berry MilkShake', 4.5, 'Berry flavored milkshake', 'Milk, Berries, Sugar')",
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Cinnamon Rolls', 3.9, 'Sweet rolls with cinnamon', 'Flour, Sugar, Butter, Cinnamon')",
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Kiwi Cupcake', 2.8, 'Cupcake with kiwi flavor', 'Flour, Sugar, Eggs, Kiwi')",
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Vanilla Cupcake', 2.8, 'Cupcake with vanilla flavor', 'Flour, Sugar, Eggs, Vanilla')",
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Chocolate Macarons', 6.0, 'Delicate chocolate macarons', 'Almond Flour, Sugar, Cocoa, Eggs')",
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Hot Chocolate', 2.0, 'Warm and comforting hot chocolate', 'Milk, Cocoa, Sugar')",
+                "INSERT INTO items (emri, cmimi, pershkrimi, perbersit) VALUES ('Black Tea', 1.8, 'Bold and rich black tea', 'Black Tea Leaves, Water')"
+        };
+
+        for (String item : items) {
+            db.execSQL(item);
+        }
     }
 }
