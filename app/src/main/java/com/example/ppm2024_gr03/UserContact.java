@@ -45,7 +45,7 @@ public class UserContact extends AppCompatActivity {
         });
 
         // Set up the buttons and their listeners
-        Button homeButton = findViewById(R.id.Btn2);
+        Button homeButton = findViewById(R.id.Btn1);
         Button buyButton = findViewById(R.id.Btn2);
         Button contactButton = findViewById(R.id.Btn3);
 
