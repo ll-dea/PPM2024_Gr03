@@ -45,5 +45,9 @@
         <activity android:name=".Cart_Activity" />
         <activity android:name=".TableSelectionActivity" />
 
+        <activity android:name=".ProfileActivity_User" />
+        <activity android:name=".ChangePasswordActivity" />
+
+
     </application>
 </manifest>

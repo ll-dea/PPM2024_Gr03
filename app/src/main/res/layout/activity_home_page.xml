@@ -13,11 +13,14 @@
         android:layout_height="67dp"
         android:layout_margin="8dp"
         android:clickable="true"
-        android:contentDescription="Profile Photo"
         android:focusable="true"
+        android:contentDescription="Profile Photo"
         android:src="@drawable/profile"
+        android:background="?attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="onProfileImageClick" />
+
 
     <TextView
         android:id="@+id/greetingTextView"
@@ -30,16 +33,7 @@
         app:layout_constraintStart_toEndOf="@id/profileImageView"
         app:layout_constraintTop_toTopOf="@id/profileImageView" />
 
-    <Button
-        android:id="@+id/logoutButton"
-        style="@style/CustomButtonStyle"
-        android:layout_width="110dp"
-        android:layout_height="48dp"
-        android:layout_margin="8dp"
-        android:text="Log Out"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
     <!-- Welcome Section -->
 

@@ -48,7 +48,6 @@ public class UserHomePage extends FragmentActivity implements OnMapReadyCallback
         Button homeButton = findViewById(R.id.button1);
         Button buyButton = findViewById(R.id.button2);
         Button contactButton = findViewById(R.id.button3);
-        Button logoutButton = findViewById(R.id.logoutButton);
 
         homeButton.setOnClickListener(v -> {
             Intent intent = new Intent(UserHomePage.this, UserHomePage.class);
@@ -65,12 +64,14 @@ public class UserHomePage extends FragmentActivity implements OnMapReadyCallback
             startActivity(intent);
         });
 
-        logoutButton.setOnClickListener(v -> {
-            Intent intent = new Intent(UserHomePage.this, LogIn.class);
-            startActivity(intent);
-            finish();
-        });
+
     }
+    public void onProfileImageClick(View view) {
+        // Handle the click action, e.g., navigate to the profile page
+        Intent intent = new Intent(this, ProfileActivity_User.class);
+        startActivity(intent);
+    }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
