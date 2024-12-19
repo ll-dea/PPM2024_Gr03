@@ -99,6 +99,7 @@
                 <!-- Sign Up Button -->
                 <Button
                     android:id="@+id/signup"
+                    style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -107,6 +108,7 @@
 
                 <!-- Back to Login Button -->
                 <Button
+                    style="@style/CustomButtonStyle"
                     android:id="@+id/loginButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

@@ -1,5 +1,8 @@
 package com.example.ppm2024_gr03;
 
+
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,9 +18,9 @@ public class NewItem extends AppCompatActivity {
 
 
         // Set up the buttons and their listeners
-        Button homeButton = findViewById(R.id.Btn1);
-        Button buyButton = findViewById(R.id.Btn2);
-        Button contactButton = findViewById(R.id.Btn3);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button homeButton = findViewById(R.id.homeButton);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button buyButton = findViewById(R.id.menuButton);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button contactButton = findViewById(R.id.contactButton);
 
         // Set onClick listeners for each button
         homeButton.setOnClickListener(new View.OnClickListener() {

@@ -1,56 +1,45 @@
 package com.example.ppm2024_gr03;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
-    private List<CartItem> cartItems;
+public class CartAdapter extends ArrayAdapter<CartItem> {
+    private List<CartItem> cartItems; // List to store the cart items
 
-    public CartAdapter(List<CartItem> cartItems) {
-        this.cartItems = cartItems;
+    public CartAdapter(Context context, List<CartItem> cartItems) {
+        super(context, 0, cartItems);
+        this.cartItems = new ArrayList<>(cartItems); // Initialize the list
     }
 
     @NonNull
     @Override
-    public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.cart_item, parent, false);
-        return new CartViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        CartItem item = cartItems.get(position);
-        holder.nameTextView.setText(item.getName());
-        holder.descriptionTextView.setText(item.getDescription());
-        holder.priceTextView.setText(String.format("$%.2f", item.getPrice()));
-        holder.imageView.setImageResource(item.getImageResId());
-    }
-
-    @Override
-    public int getItemCount() {
-        return cartItems.size();
-    }
-
-    static class CartViewHolder extends RecyclerView.ViewHolder {
-        TextView nameTextView, descriptionTextView, priceTextView;
-        ImageView imageView;
-
-        public CartViewHolder(@NonNull View itemView) {
-            super(itemView);
-            nameTextView = itemView.findViewById(R.id.itemName);
-            descriptionTextView = itemView.findViewById(R.id.itemDescription);
-            priceTextView = itemView.findViewById(R.id.itemPrice);
-            imageView = itemView.findViewById(R.id.itemImage);
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.cart_item, parent, false);
         }
+
+        CartItem cartItem = getItem(position);
+
+        if (cartItem != null) {
+            TextView nameTextView = convertView.findViewById(R.id.itemNameTextView);
+            TextView quantityTextView = convertView.findViewById(R.id.itemQuantityTextView);
+            TextView priceTextView = convertView.findViewById(R.id.itemPriceTextView);
+
+            nameTextView.setText(cartItem.getProductName());
+            quantityTextView.setText("Quantity: " + cartItem.getQuantity());
+            priceTextView.setText(String.format("Price: $%.2f", cartItem.getTotalPrice()));
+        }
+
+        return convertView;
     }
 }
-

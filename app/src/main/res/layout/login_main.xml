@@ -70,7 +70,10 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:singleLine="true"
-                    android:text="Login" />
+                    android:text="Login"
+                    style="@style/CustomButtonStyle"
+                    />
+
 
                 <Button
                     android:id="@+id/signup"
@@ -80,7 +83,9 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:contentDescription="Sign up if you don't have an account"
-                    android:text="Sign Up" />
+                    android:text="Sign Up"
+                    style="@style/CustomButtonStyle"
+                    />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

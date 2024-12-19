@@ -29,7 +29,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Home"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginEnd="8dp"
+            style="@style/CustomButtonStyle"
+            />
 
         <!-- Buy Button -->
         <Button
@@ -38,7 +40,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Buy"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginEnd="8dp"
+            style="@style/CustomButtonStyle"
+            />
 
         <!-- Contact Button -->
         <Button
@@ -46,7 +50,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Contact" />
+            android:text="Contact"
+            style="@style/CustomButtonStyle"
+            />
     </LinearLayout>
 
 </LinearLayout>

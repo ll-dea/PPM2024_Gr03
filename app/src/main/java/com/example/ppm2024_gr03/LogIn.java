@@ -74,7 +74,7 @@ public class LogIn extends AppCompatActivity {
                     // Hap faqen e admin-it
                     String userName = DB.getUserName(email);
                     Toast.makeText(this, "Welcome Admin!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LogIn.this, AdminPage.class);
+                    Intent intent = new Intent(LogIn.this,TableSelectionActivity.class);
                     intent.putExtra("adminEmail", email);
                     intent.putExtra("adminName", userName);
                     startActivity(intent);

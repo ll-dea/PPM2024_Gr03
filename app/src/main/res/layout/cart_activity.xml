@@ -2,91 +2,67 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Back Button with Left Arrow -->
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="106dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/primary"
-        android:drawableLeft="@drawable/arrow_left"
-        android:paddingStart="8dp"
-        android:text="Back"
-        android:textColor="@android:color/white"
-        android:textSize="16sp" />
-
-
-    <!-- Cart Title -->
-    <TextView
-        android:id="@+id/cartTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your Cart"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp" />
-
-    <!-- RecyclerView for Cart Items -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cartRecyclerView"
+    <ListView
+        android:id="@+id/cartListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <!-- Cart Summary -->
+    <TextView
+        android:id="@+id/totalPriceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total: $0.00"
+        android:layout_marginBottom="16dp" />
+
+<!--    <Button-->
+<!--        android:id="@+id/checkoutButton"-->
+<!--        android:layout_width="133dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Checkout" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/clearCartButton"-->
+<!--        android:layout_width="129dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Clear Cart" />-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="16dp">
-
-        <TextView
-            android:id="@+id/totalLabel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Total:"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/totalPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="$0.00"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <!-- Buttons for Checkout and Clear Cart -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_margin="10dp"
         android:gravity="center"
-        android:paddingTop="8dp">
+        android:orientation="horizontal">
 
+        <!-- Sign Up Button -->
         <Button
             android:id="@+id/checkoutButton"
+            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Checkout"
-            android:backgroundTint="@color/primary"
-            android:textColor="@android:color/white"
-            android:layout_marginEnd="8dp" />
+            android:text="Check out"
+            android:textColorHint="#9B6868" />
 
+        <!-- Back to Login Button -->
         <Button
             android:id="@+id/clearCartButton"
+            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Clear Cart"
-            android:backgroundTint="@color/red"
-            android:textColor="@android:color/white"
-            android:layout_marginStart="8dp" />
+            app:iconTint="#7A2626" />
+        <Button
+            android:id="@+id/GoToHomeButton"
+            style="@style/CustomButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Home"
+            app:iconTint="#7A2626" />
     </LinearLayout>
 </LinearLayout>

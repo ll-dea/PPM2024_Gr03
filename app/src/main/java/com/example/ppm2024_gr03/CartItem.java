@@ -1,41 +1,42 @@
+// CartItem.java
 package com.example.ppm2024_gr03;
 
 public class CartItem {
-    private String name;
-    private String description;
-    private double price;
-    private int imageResId;
+    private String productName;
     private int quantity;
+    private double price;
 
-    public CartItem(String name, String description, double price, int imageResId) {
-        this.name = name;
-        this.description = description;
+    public CartItem(String productName, int quantity, double price) {
+        this.productName = productName;
+        this.quantity = quantity;
         this.price = price;
-        this.imageResId = imageResId;
     }
 
-    // Getters and setters
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
 
-    public String getDescription() {
-        return description;
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public int getImageResId() {
-        return imageResId;
-    }
-    public int getQuantity() {
-        return quantity;  // Returns the quantity of the item
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    // Setter for quantity
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;  // Set the quantity
+    public double getTotalPrice() {
+        return price * quantity;
     }
 }

@@ -37,7 +37,8 @@
         <activity android:name=".AdminMessages" />
         <activity android:name=".NewItem" />
         <activity android:name=".Cart_Activity" />
-
+        <activity android:name=".UserMessage" />
+        <activity android:name=".TableSelectionActivity" />
 
 
 

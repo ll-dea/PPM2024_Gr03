@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+    <Button
+        android:id="@+id/InvoicesButton"
+        style="@style/CustomButtonStyle"
+        android:layout_width="374dp"
+        android:layout_height="133dp"
+        android:onClick="onTableSelected"
+        android:tag="1"
+        android:text="Invoices" />
+
+    <Button
+        android:id="@+id/table_1"
+        style="@style/CustomButtonStyle"
+        android:layout_width="374dp"
+        android:layout_height="133dp"
+        android:onClick="onTableSelected"
+        android:tag="1"
+        android:text="Table 1" />
+
+    <Button
+        android:id="@+id/table_2"
+        style="@style/CustomButtonStyle"
+        android:layout_width="374dp"
+        android:layout_height="133dp"
+        android:onClick="onTableSelected"
+        android:tag="2"
+        android:text="Table 2" />
+
+    <Button
+        android:id="@+id/table_3"
+        style="@style/CustomButtonStyle"
+        android:layout_width="374dp"
+        android:layout_height="133dp"
+        android:onClick="onTableSelected"
+        android:tag="3"
+        android:text="Table 3" />
+
+    <Button
+        android:id="@+id/table_4"
+        style="@style/CustomButtonStyle"
+        android:layout_width="374dp"
+        android:layout_height="133dp"
+        android:onClick="onTableSelected"
+        android:tag="4"
+        android:text="Table 4" />
+</LinearLayout>

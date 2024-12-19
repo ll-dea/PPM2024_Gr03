@@ -15,7 +15,7 @@
         android:layout_marginBottom="16dp">
 
         <Button
-            android:id="@+id/btn1"
+            android:id="@+id/homeButton"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
@@ -24,7 +24,7 @@
             android:textColor="@android:color/white" />
 
         <Button
-            android:id="@+id/btn2"
+            android:id="@+id/menuButton"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
@@ -34,7 +34,7 @@
             android:textColor="@android:color/white" />
 
         <Button
-            android:id="@+id/btn3"
+            android:id="@+id/contactButton"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
