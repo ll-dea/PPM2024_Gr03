@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    
+
+    <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -15,6 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.PPM2024_Gr03">
 
+        <!-- Google Maps API Key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC6ApT8BWNLtGZ9AvW9XZ5luxP3kA8Qqy0" />
+
+        <!-- Activities -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -28,7 +35,6 @@
         <activity
             android:name=".LogIn"
             android:exported="false" />
-
         <activity android:name=".SignUp" />
         <activity android:name=".UserHomePage" />
         <activity android:name=".AdminPage" />
@@ -37,10 +43,7 @@
         <activity android:name=".AdminMessages" />
         <activity android:name=".NewItem" />
         <activity android:name=".Cart_Activity" />
-        <activity android:name=".UserMessage" />
         <activity android:name=".TableSelectionActivity" />
-
-
 
     </application>
 </manifest>

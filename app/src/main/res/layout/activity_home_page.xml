@@ -42,14 +42,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Welcome Section -->
+
     <TextView
         android:id="@+id/welcomeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
         android:gravity="center"
         android:text="Welcome to Eli &amp; Dea Brew"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profileImageView" />
 
@@ -65,13 +68,19 @@
         app:layout_constraintTop_toBottomOf="@id/welcomeTextView" />
 
     <!-- Button Row -->
+
+    <!-- Location and Schedule Section -->
+
+    <!-- Map Section -->
+
     <LinearLayout
         android:id="@+id/buttonRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/welcomeeTextView">
 
@@ -100,38 +109,39 @@
             android:text="Contact" />
     </LinearLayout>
 
-    <!-- Offers Section -->
-
-    <!-- Location and Schedule Section -->
     <TextView
         android:id="@+id/locationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
         android:text="Find us at: "
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="292dp" />
+        app:layout_constraintTop_toBottomOf="@id/buttonRow" />
 
     <TextView
         android:id="@+id/scheduleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:text="Opening Hours: 8:00 AM - 10:00 PM"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/locationTextView" />
 
-    <!-- Map Section -->
-    <org.osmdroid.views.MapView
-        android:id="@+id/mapView"
-        android:layout_width="300dp"
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/scheduleTextView" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
