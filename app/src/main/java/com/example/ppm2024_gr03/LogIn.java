@@ -1,6 +1,5 @@
 package com.example.ppm2024_gr03;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -83,7 +82,7 @@ public class LogIn extends AppCompatActivity {
                     // Hap faqen e përdoruesit të thjeshtë
                     String userName = DB.getUserName(email); // Merr emrin e përdoruesit
                     Toast.makeText(this, "Welcome " + userName + "!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LogIn.this, HomePage.class);
+                    Intent intent = new Intent(LogIn.this, UserHomePage.class);
                     intent.putExtra("userEmail", email);
                     intent.putExtra("userName", userName);
                     startActivity(intent);

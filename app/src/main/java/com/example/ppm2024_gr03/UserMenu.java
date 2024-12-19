@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BuyPage extends AppCompatActivity {
+public class UserMenu extends AppCompatActivity {
     private DB database; // Database instance
     private Map<Integer, String> buttonToProductMap; // Map buttons to product names
 
@@ -22,7 +22,7 @@ public class BuyPage extends AppCompatActivity {
     @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.buypage);
+            setContentView(R.layout.usermenu);
             database = new DB(this);
             buttonToProductMap = new HashMap<>();
 
@@ -69,7 +69,7 @@ public class BuyPage extends AppCompatActivity {
                 public void onClick(View v) {
                     // For example, navigate to the home activity
                     // You can start a new activity or update the UI
-                    Intent intent = new Intent(BuyPage.this, HomePage.class); // Or the appropriate activity
+                    Intent intent = new Intent(UserMenu.this, UserHomePage.class); // Or the appropriate activity
                     startActivity(intent);
                 }
             });
@@ -77,7 +77,7 @@ public class BuyPage extends AppCompatActivity {
             buyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(BuyPage.this, BuyPage.class);
+                    Intent intent = new Intent(UserMenu.this, UserMenu.class);
                     startActivity(intent);
                 }
             });
@@ -86,7 +86,7 @@ public class BuyPage extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     // For example, navigate to the Contact activity
-                    Intent intent = new Intent(BuyPage.this, ContactPage.class);
+                    Intent intent = new Intent(UserMenu.this, UserContact.class);
                     startActivity(intent);
                 }
             });
@@ -111,14 +111,14 @@ public class BuyPage extends AppCompatActivity {
                         String ingredients = cursor.getString(1);
 
                         // Show a dialog with product details
-                        new AlertDialog.Builder(BuyPage.this)
+                        new AlertDialog.Builder(UserMenu.this)
                                 .setTitle(productName)
                                 .setMessage("Description: " + description + "\n\nIngredients: " + ingredients)
                                 .setPositiveButton("OK", null)
                                 .show();
                     } else {
                         // If no details are found, show an error
-                        new AlertDialog.Builder(BuyPage.this)
+                        new AlertDialog.Builder(UserMenu.this)
                                 .setTitle("Error")
                                 .setMessage("Details for " + productName + " not found.")
                                 .setPositiveButton("OK", null)

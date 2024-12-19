@@ -42,8 +42,8 @@ public class Cart_Activity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start a new activity (e.g., BuyPage)
-                Intent intent = new Intent(Cart_Activity.this, BuyPage.class);
+                // Start a new activity (e.g., UserMenu)
+                Intent intent = new Intent(Cart_Activity.this, UserMenu.class);
                 startActivity(intent);
             }
         });

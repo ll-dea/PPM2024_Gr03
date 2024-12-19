@@ -14,7 +14,7 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.overlay.Marker;
 
-public class HomePage extends AppCompatActivity {
+public class UserHomePage extends AppCompatActivity {
 
     private MapView mapView;
 
@@ -25,7 +25,7 @@ public class HomePage extends AppCompatActivity {
 
         String userName = getIntent().getStringExtra("userName");
 
-        Log.d("HomePage", "User name: " + userName);
+        Log.d("UserHomePage", "User name: " + userName);
 
         TextView greetingText = findViewById(R.id.greetingTextView);
         if (userName != null && !userName.isEmpty()) {
@@ -64,7 +64,7 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View v) {
                 // For example, navigate to the home activity
                 // You can start a new activity or update the UI
-                Intent intent = new Intent(HomePage.this, HomePage.class); // Or the appropriate activity
+                Intent intent = new Intent(UserHomePage.this, UserHomePage.class); // Or the appropriate activity
                 startActivity(intent);
             }
         });
@@ -72,7 +72,7 @@ public class HomePage extends AppCompatActivity {
         buyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this, BuyPage.class);
+                Intent intent = new Intent(UserHomePage.this, UserMenu.class);
                 startActivity(intent);
             }
         });
@@ -81,7 +81,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // For example, navigate to the Contact activity
-                Intent intent = new Intent(HomePage.this, ContactPage.class);
+                Intent intent = new Intent(UserHomePage.this, UserContact.class);
                 startActivity(intent);
             }
         });
@@ -90,7 +90,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Log out the user and possibly go back to a login screen
-                Intent intent = new Intent(HomePage.this, LogIn.class);
+                Intent intent = new Intent(UserHomePage.this, LogIn.class);
                 startActivity(intent);
                 finish();
             }

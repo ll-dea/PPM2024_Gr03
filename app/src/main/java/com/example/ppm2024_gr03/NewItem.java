@@ -15,9 +15,9 @@ public class NewItem extends AppCompatActivity {
 
 
         // Set up the buttons and their listeners
-        Button homeButton = findViewById(R.id.btn_1);
-        Button buyButton = findViewById(R.id.btn_2);
-        Button contactButton = findViewById(R.id.btn_3);
+        Button homeButton = findViewById(R.id.Btn1);
+        Button buyButton = findViewById(R.id.Btn2);
+        Button contactButton = findViewById(R.id.Btn3);
 
         // Set onClick listeners for each button
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -42,7 +42,7 @@ public class NewItem extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // For example, navigate to the Contact activity
-                Intent intent = new Intent(NewItem.this, Messages_Admin_Page.class);
+                Intent intent = new Intent(NewItem.this, AdminMessages.class);
                 startActivity(intent);
             }
         });

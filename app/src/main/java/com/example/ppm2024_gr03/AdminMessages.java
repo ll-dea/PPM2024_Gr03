@@ -1,5 +1,6 @@
 package com.example.ppm2024_gr03;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,14 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class Messages_Admin_Page extends AppCompatActivity {
+public class AdminMessages extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contact_admin_page);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewi);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         DB db = new DB(this);
@@ -31,9 +32,9 @@ public class Messages_Admin_Page extends AppCompatActivity {
 
 
         // Set up the buttons and their listeners
-        Button homeButton = findViewById(R.id.btn_1);
-        Button buyButton = findViewById(R.id.btn_2);
-        Button contactButton = findViewById(R.id.btn_3);
+         Button homeButton = findViewById(R.id.Btn1);
+         Button buyButton = findViewById(R.id.Btn2);
+         Button contactButton = findViewById(R.id.Btn3);
 
         // Set onClick listeners for each button
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -41,7 +42,7 @@ public class Messages_Admin_Page extends AppCompatActivity {
             public void onClick(View v) {
                 // For example, navigate to the home activity
                 // You can start a new activity or update the UI
-                Intent intent = new Intent(Messages_Admin_Page.this, AdminPage.class); // Or the appropriate activity
+                Intent intent = new Intent(AdminMessages.this, AdminPage.class); // Or the appropriate activity
                 startActivity(intent);
             }
         });
@@ -49,7 +50,7 @@ public class Messages_Admin_Page extends AppCompatActivity {
         buyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Messages_Admin_Page.this, NewItem.class);
+                Intent intent = new Intent(AdminMessages.this, NewItem.class);
                 startActivity(intent);
             }
         });
@@ -58,7 +59,7 @@ public class Messages_Admin_Page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // For example, navigate to the Contact activity
-                Intent intent = new Intent(Messages_Admin_Page.this, Messages_Admin_Page.class);
+                Intent intent = new Intent(AdminMessages.this, AdminMessages.class);
                 startActivity(intent);
             }
         });

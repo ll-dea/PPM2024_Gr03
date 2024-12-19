@@ -30,11 +30,11 @@
             android:exported="false" />
 
         <activity android:name=".SignUp" />
-        <activity android:name=".HomePage" />
+        <activity android:name=".UserHomePage" />
         <activity android:name=".AdminPage" />
-        <activity android:name=".BuyPage" />
-        <activity android:name=".ContactPage" />
-        <activity android:name=".Messages_Admin_Page" />
+        <activity android:name=".UserMenu" />
+        <activity android:name=".UserContact" />
+        <activity android:name=".AdminMessages" />
         <activity android:name=".NewItem" />
         <activity android:name=".Cart_Activity" />
 

@@ -15,32 +15,32 @@
         android:layout_marginBottom="16dp">
 
         <Button
-            android:id="@+id/btn_1"
+            android:id="@+id/btn1"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
+            android:backgroundTint="@color/primary"
             android:text="Home"
-            android:backgroundTint="@color/primary"
-            android:textColor="@android:color/white"/>
-
-        <Button
-            android:id="@+id/btn_2"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:text="Menu"
-            android:layout_marginStart="8dp"
-            android:backgroundTint="@color/primary"
             android:textColor="@android:color/white" />
 
         <Button
-            android:id="@+id/btn_3"
+            android:id="@+id/btn2"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:layout_weight="1"
-            android:text="Contact"
             android:layout_marginStart="8dp"
+            android:layout_weight="1"
             android:backgroundTint="@color/primary"
+            android:text="Menu"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/primary"
+            android:text="Contact"
             android:textColor="@android:color/white" />
 
     </LinearLayout>
