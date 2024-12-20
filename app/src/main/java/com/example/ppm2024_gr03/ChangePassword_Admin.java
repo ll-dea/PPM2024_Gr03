@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-public class ChangePasswordActivity extends AppCompatActivity {
+public class ChangePassword_Admin extends AppCompatActivity {
 
     private EditText oldPasswordEditText;
     private EditText newPasswordEditText;
@@ -32,7 +32,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText);
         changePasswordButton = findViewById(R.id.changePasswordButton);
 
-        db = new DB(this);
+        db = new DB(this);  // Initialize DB
 
         // Set up the Change Password button click listener
         changePasswordButton.setOnClickListener(new View.OnClickListener() {
@@ -64,27 +64,27 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 }
 
                 // Merr emailin e përdoruesit të loguar
-                String email = db.getAdminEmail();
+                String email = db.getUserEmail();
 
                 // Verifikimi i fjalëkalimit të vjetër
-                if (db.verifyOldPassword(email, oldPassword)) {
+                if (db.verifyOldPassword_Admin(email, oldPassword)) {
                     // Përdor funksionin për të përditësuar fjalëkalimin
-                    boolean isUpdated = db.updatePassword(email, newPassword);
+                    boolean isUpdated = db.updatePassword_Admin(email, newPassword);
                     if (isUpdated) {
-                        Toast.makeText(ChangePasswordActivity.this, "Fjalëkalimi është ndryshuar me sukses", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChangePassword_Admin.this, "Fjalëkalimi është ndryshuar me sukses", Toast.LENGTH_SHORT).show();
                         finish();  // Mbyll aktivitetin dhe kthehu në ekranin paraprak
                     } else {
-                        Toast.makeText(ChangePasswordActivity.this, "Dështoi përditësimi i fjalëkalimit", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChangePassword_Admin.this, "Dështoi përditësimi i fjalëkalimit", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(ChangePasswordActivity.this, "Fjalëkalimi i vjetër është gabim", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChangePassword_Admin.this, "Fjalëkalimi i vjetër është gabim", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
         Button backButton = findViewById(R.id.BackButton);
         backButton.setOnClickListener(v -> {
-            Intent intent = new Intent(ChangePasswordActivity.this, ProfileActivity_User.class);
+            Intent intent = new Intent(ChangePassword_Admin.this, ProfileActivity_User.class);
             startActivity(intent);
             finish();
         });

@@ -73,24 +73,37 @@ public class DB extends SQLiteOpenHelper {
     public String getUserEmail() {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        // Query to get the email for the currently logged-in user
-        Cursor cursor = db.rawQuery("SELECT email FROM users LIMIT 1", null);  // Assuming you want the first user or use a condition to filter
-
+        Cursor cursor = db.rawQuery("SELECT email FROM users LIMIT 1", null);
         if (cursor != null && cursor.moveToFirst()) {
-            // Get the email from the result set
             String email = cursor.getString(0);
             cursor.close();
             return email;
         }
 
-        // If cursor is null or no matching email found, return null
         if (cursor != null) {
             cursor.close();
         }
 
-        return null;  // Return null if user does not exist or no match found
+        return null;
     }
 
+
+    public String getAdminEmail() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT email FROM userAdmin LIMIT 1", null);
+        if (cursor != null && cursor.moveToFirst()) {
+            String email = cursor.getString(0);
+            cursor.close();
+            return email;
+        }
+
+        if (cursor != null) {
+            cursor.close();
+        }
+
+        return null;
+    }
 
     public long insertMessage(String name, String email, String message) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -178,24 +191,20 @@ public class DB extends SQLiteOpenHelper {
     public boolean verifyOldPassword(String email, String enteredPassword) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        // Query to fetch the stored hashed password from the database
         Cursor cursor = db.rawQuery("SELECT password FROM users WHERE email = ?", new String[]{email});
 
         if (cursor != null && cursor.moveToFirst()) {
-            // Retrieve the stored hashed password from the database
             String storedHashedPassword = cursor.getString(0);
             cursor.close();
 
-            // Use BCrypt to compare the entered plain password with the stored hashed password
             return BCrypt.checkpw(enteredPassword, storedHashedPassword);
         }
 
-        // If cursor is null or no matching email found, return false
         if (cursor != null) {
             cursor.close();
         }
 
-        return false;  // Return false if user does not exist or no match found
+        return false;
     }
 
     public boolean updatePassword(String email, String newPassword) {
@@ -208,6 +217,36 @@ public class DB extends SQLiteOpenHelper {
         values.put("password", hashedPassword);
 
         return db.update("users", values, "email = ?", new String[]{email}) > 0;
+    }
+
+    public boolean verifyOldPassword_Admin(String email, String enteredPassword) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT password FROM users WHERE email = ?", new String[]{email});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            String storedHashedPassword = cursor.getString(0);
+            cursor.close();
+
+            return BCrypt.checkpw(enteredPassword, storedHashedPassword);
+        }
+
+        if (cursor != null) {
+            cursor.close();
+        }
+
+        return false;
+    }
+
+    public boolean updatePassword_Admin(String email, String newPassword) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+
+        ContentValues values = new ContentValues();
+        values.put("password", hashedPassword);
+
+        return db.update("userAdmin", values, "email = ?", new String[]{email}) > 0;
     }
 
     // Insert admin user
