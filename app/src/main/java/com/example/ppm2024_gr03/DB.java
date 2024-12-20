@@ -86,6 +86,44 @@ public class DB extends SQLiteOpenHelper {
 
         return null;
     }
+    public Admin getAdminDetails(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT email, name, surname, phone FROM adminUser WHERE email = ?", new String[]{email});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            Admin admin = new Admin(
+                    cursor.getString(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3)
+            );
+            cursor.close();
+            return admin;
+        }
+
+        if (cursor != null) cursor.close();
+        return null;
+    }
+
+
+    public User getUserDetails(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT email, name, surname, phone FROM users WHERE email = ?", new String[]{email});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            User user = new User(
+                    cursor.getString(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3)
+            );
+            cursor.close();
+            return user;
+        }
+
+        if (cursor != null) cursor.close();
+        return null;
+    }
 
 
     public String getAdminEmail() {

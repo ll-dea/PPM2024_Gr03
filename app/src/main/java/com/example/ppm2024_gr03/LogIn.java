@@ -77,6 +77,7 @@ public class LogIn extends AppCompatActivity {
                     Intent intent = new Intent(LogIn.this,TableSelectionActivity.class);
                     intent.putExtra("adminEmail", email);
                     intent.putExtra("adminName", userName);
+
                     startActivity(intent);
                 } else {
                     // Hap faqen e përdoruesit të thjeshtë
