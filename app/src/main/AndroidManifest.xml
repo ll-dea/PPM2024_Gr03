@@ -48,6 +48,9 @@
         <activity android:name=".ProfileActivity_User" />
         <activity android:name=".ChangePasswordActivity" />
 
+        <activity android:name=".ProfileActivity_Admin" />
+        <activity android:name=".ChangePassword_Admin" />
+
 
     </application>
 </manifest>

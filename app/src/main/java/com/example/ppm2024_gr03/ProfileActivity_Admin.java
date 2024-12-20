@@ -41,7 +41,7 @@ public class ProfileActivity_Admin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to the Change Password activity
-                Intent intent = new Intent(ProfileActivity_Admin.this, ChangePasswordActivity.class);
+                Intent intent = new Intent(ProfileActivity_Admin.this, ChangePassword_Admin.class);
                 startActivity(intent);
             }
         });

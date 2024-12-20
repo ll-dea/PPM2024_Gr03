@@ -32,7 +32,7 @@ public class TableSelectionActivity extends AppCompatActivity {
 
     public void onProfileImageClick(View view) {
         // Handle the click action, e.g., navigate to the profile page
-        Intent intent = new Intent(this, ProfileActivity_User.class);
+        Intent intent = new Intent(this, ProfileActivity_Admin.class);
         startActivity(intent);
     }
 }

@@ -24,7 +24,7 @@ public class ChangePassword_Admin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_password);
+        setContentView(R.layout.password_change_admin);
 
         // Initialize EditText fields and DB helper
         oldPasswordEditText = findViewById(R.id.oldPasswordEditText);
@@ -64,9 +64,7 @@ public class ChangePassword_Admin extends AppCompatActivity {
                 }
 
                 // Merr emailin e përdoruesit të loguar
-                String email = db.getUserEmail();
-
-                // Verifikimi i fjalëkalimit të vjetër
+                String email = db.getAdminEmail();
                 if (db.verifyOldPassword_Admin(email, oldPassword)) {
                     // Përdor funksionin për të përditësuar fjalëkalimin
                     boolean isUpdated = db.updatePassword_Admin(email, newPassword);

@@ -91,7 +91,7 @@ public class DB extends SQLiteOpenHelper {
     public String getAdminEmail() {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT email FROM userAdmin LIMIT 1", null);
+        Cursor cursor = db.rawQuery("SELECT email FROM adminUser LIMIT 1", null);
         if (cursor != null && cursor.moveToFirst()) {
             String email = cursor.getString(0);
             cursor.close();
@@ -222,7 +222,7 @@ public class DB extends SQLiteOpenHelper {
     public boolean verifyOldPassword_Admin(String email, String enteredPassword) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT password FROM users WHERE email = ?", new String[]{email});
+        Cursor cursor = db.rawQuery("SELECT password FROM adminUser WHERE email = ?", new String[]{email});
 
         if (cursor != null && cursor.moveToFirst()) {
             String storedHashedPassword = cursor.getString(0);
@@ -246,7 +246,7 @@ public class DB extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("password", hashedPassword);
 
-        return db.update("userAdmin", values, "email = ?", new String[]{email}) > 0;
+        return db.update("adminUser", values, "email = ?", new String[]{email}) > 0;
     }
 
     // Insert admin user
