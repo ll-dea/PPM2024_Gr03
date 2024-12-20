@@ -1,62 +1,93 @@
 package com.example.ppm2024_gr03;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 public class ChangePasswordActivity extends AppCompatActivity {
 
-    private EditText currentPasswordEditText, newPasswordEditText, confirmPasswordEditText;
-    private Button savePasswordButton;
+    private EditText oldPasswordEditText;
+    private EditText newPasswordEditText;
+    private EditText confirmPasswordEditText;
+    private Button changePasswordButton;
+
+    private DB db;  // Create an instance of the DB class
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
 
-        // Initialize views
-        currentPasswordEditText = findViewById(R.id.currentPasswordEditText);
+        // Initialize EditText fields and DB helper
+        oldPasswordEditText = findViewById(R.id.oldPasswordEditText);
         newPasswordEditText = findViewById(R.id.newPasswordEditText);
         confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText);
-        savePasswordButton = findViewById(R.id.savePasswordButton);
+        changePasswordButton = findViewById(R.id.changePasswordButton);
 
-        // Handle save password button click
-        savePasswordButton.setOnClickListener(new View.OnClickListener() {
+        db = new DB(this);  // Initialize DB
+
+        // Get the email of the user (for example from SharedPreferences or passed from the previous screen)
+        String email = "user@example.com";  // This is just an example, you should fetch the email dynamically
+
+        // Set up the Change Password button click listener
+        changePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Check if passwords match and save new password (logic for saving the password is omitted)
-                String currentPassword = currentPasswordEditText.getText().toString();
-                String newPassword = newPasswordEditText.getText().toString();
-                String confirmPassword = confirmPasswordEditText.getText().toString();
+                String oldPassword = oldPasswordEditText.getText().toString().trim();
+                String newPassword = newPasswordEditText.getText().toString().trim();
+                String confirmPassword = confirmPasswordEditText.getText().toString().trim();
 
-                if (!newPassword.equals(confirmPassword)) {
-                    Toast.makeText(ChangePasswordActivity.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
+                // Verifikimi i inputeve
+                if (TextUtils.isEmpty(oldPassword)) {
+                    oldPasswordEditText.setError("Fjalëkalimi i vjetër është i kërkuar");
                     return;
                 }
 
-                // Save the new password (you can add your logic here)
-                // For now, we show a success message
-                Toast.makeText(ChangePasswordActivity.this, "Password changed successfully!", Toast.LENGTH_SHORT).show();
-                finish();
+                if (TextUtils.isEmpty(newPassword)) {
+                    newPasswordEditText.setError("Fjalëkalimi i ri është i kërkuar");
+                    return;
+                }
+
+                if (TextUtils.isEmpty(confirmPassword)) {
+                    confirmPasswordEditText.setError("Ju lutem konfirmoni fjalëkalimin e ri");
+                    return;
+                }
+
+                if (!newPassword.equals(confirmPassword)) {
+                    confirmPasswordEditText.setError("Fjalëkalimet nuk përputhen");
+                    return;
+                }
+
+                // Merr emailin e përdoruesit të loguar
+                String email = db.getUserEmail();
+
+                // Verifikimi i fjalëkalimit të vjetër
+                if (db.verifyOldPassword(email, oldPassword)) {
+                    // Përdor funksionin për të përditësuar fjalëkalimin
+                    boolean isUpdated = db.updatePassword(email, newPassword);
+                    if (isUpdated) {
+                        Toast.makeText(ChangePasswordActivity.this, "Fjalëkalimi është ndryshuar me sukses", Toast.LENGTH_SHORT).show();
+                        finish();  // Mbyll aktivitetin dhe kthehu në ekranin paraprak
+                    } else {
+                        Toast.makeText(ChangePasswordActivity.this, "Dështoi përditësimi i fjalëkalimit", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(ChangePasswordActivity.this, "Fjalëkalimi i vjetër është gabim", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-        Button backButton = findViewById(R.id.BackButton);
+    }
 
-        // Set onClick listeners for each button
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // For example, navigate to the home activity
-                // You can start a new activity or update the UI
-                Intent intent = new Intent(ChangePasswordActivity.this, ProfileActivity_User.class); // Or the appropriate activity
-                startActivity(intent);
-            }
-        });
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        db.close();  // Close the database connection when the activity is destroyed
     }
 }

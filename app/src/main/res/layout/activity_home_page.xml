@@ -7,35 +7,38 @@
     android:background="@color/white">
 
     <!-- Profile Section -->
+
+
+    <!-- Welcome Section -->
+
     <ImageView
         android:id="@+id/profileImageView"
         android:layout_width="76dp"
         android:layout_height="67dp"
         android:layout_margin="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:contentDescription="Profile Photo"
-        android:src="@drawable/profile"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:contentDescription="Profile Photo"
+        android:focusable="true"
+        android:onClick="onProfileImageClick"
+        android:src="@drawable/profile"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="onProfileImageClick" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/greetingTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:text="Hello, [User's Name]!"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/profileImageView"
         app:layout_constraintStart_toEndOf="@id/profileImageView"
-        app:layout_constraintTop_toTopOf="@id/profileImageView" />
-
-
-
-    <!-- Welcome Section -->
+        app:layout_constraintTop_toTopOf="@id/profileImageView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/welcomeTextView"
